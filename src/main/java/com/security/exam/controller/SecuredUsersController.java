@@ -1,5 +1,7 @@
-package com.octoperf;
+package com.security.exam.controller;
 
+import com.security.exam.model.User;
+import com.security.exam.service.UserAuthenticationService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
@@ -16,17 +18,18 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 final class SecuredUsersController {
-  @NonNull
-  UserAuthenticationService authentication;
 
-  @GetMapping("/current")
-  User getCurrent(@AuthenticationPrincipal final User user) {
-    return user;
-  }
+    @NonNull
+    UserAuthenticationService authentication;
 
-  @GetMapping("/logout")
-  boolean logout(@AuthenticationPrincipal final User user) {
-    authentication.logout(user);
-    return true;
-  }
+    @GetMapping("/current")
+    User getCurrent(@AuthenticationPrincipal final User user) {
+        return user;
+    }
+
+    @GetMapping("/logout")
+    boolean logout(@AuthenticationPrincipal final User user) {
+        authentication.logout(user);
+        return true;
+    }
 }
